@@ -2,6 +2,9 @@
 
 Every scheduled run follows this guide exactly. Brian edits it to change the page's rules.
 
+## 0. Read section 7 first
+Section 7 holds what the page's own Instagram data says is working. Apply it when choosing the topic, hook style, cover layout and photos — it overrides the general examples below, but never Brian's rules (audience, photo standards, tone, tattoos).
+
 ## 1. The page (follow exactly)
 - Display name "Elevate", handle @ElevatexWealth. Modeled on @wealth and @explaining: swipeable 5–7 slide carousels (1080x1350), each slide a full-bleed REAL photo on top and a black band at the bottom with the Elevate logo on a gold line and a huge condensed uppercase headline (key words in gold).
 - Topics rotate across **wealth, money habits, investing basics, career/income, health & fitness, luxury lifestyle, travel, mindset/discipline, relationships & family, generosity**. Mix evergreen lessons with timely hooks (a current money/market/news story, verified by web search the same day).
@@ -40,3 +43,6 @@ The renderer is `elevate_render.py` in this repository; run it from the repo fol
 4. Publish with the Windsor.ai connector (load its tools with ToolSearch "windsor"): `execute_action` with connector `instagram`, action `create_carousel_post`, account `17841433578299003`, params `{"image_urls": [...in slide order...], "caption": "..."}` (2–10 images, caption ≤ 2,200 characters).
 5. If the push or the publish fails, retry once. If it still fails, send Brian the PNGs (SendUserFile, in order) plus the caption and the error (SendUserMessage) so he can post it manually in Meta Business Suite.
 6. On success, send Brian one short SendUserMessage: "Posted ✅ <slot>: <cover hook>" with the media id. Finish with a 2-line summary: topic, hook, published or not.
+
+## 7. What's working (auto-updated by the daily growth review — do not edit by hand)
+_Not enough data yet (fewer than 10 posts with 48+ hours of insights). Until then, rotate topics and cover styles evenly so the review can compare them._
