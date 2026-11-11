@@ -46,3 +46,14 @@ The renderer is `elevate_render.py` in this repository; run it from the repo fol
 
 ## 7. What's working (auto-updated by the daily growth review — do not edit by hand)
 _Not enough data yet (fewer than 10 posts with 48+ hours of insights). Until then, rotate topics and cover styles evenly so the review can compare them._
+
+## 8. Daily Reel (used by the Reel run only)
+Instagram shows Reels to non-followers far more than carousels, so every day one recent carousel is repurposed as a Reel.
+1. Pick the carousel: from `posts/log.jsonl`, the posts of the last 3 days that have no `reel_media_id` yet. If Windsor has insights for them, pick the one with the most media_follows, then shares + saves, then reach; otherwise the most recent one.
+2. Its slide JPEGs are in `posts/<folder>/` in this repo (folder = date-slot). Run `python3 /home/claude/elevate-media/elevate_reel.py out.mp4 <slides in order>` → 9:16, 30 fps, ~20 s, slow push-in on each slide over a blurred background. If the repo has a `music/` folder with .mp3/.m4a tracks, one is used automatically (only royalty-free or Brian's own music may go there); otherwise the Reel is silent.
+3. Grab 2 frames with ffmpeg (around 1.5 s and the middle) and look at them with the Read tool before publishing.
+4. Save it as `reels/<YYYY-MM-DD>-reel.mp4`, add `"reel_media_id"` to that post's line in `posts/log.jsonl` after publishing, commit and push (pull --rebase first).
+5. Publish with Windsor.ai `execute_action`: connector `instagram`, action `create_video_post`, account `17841433578299003`, params `{"video_url": URL, "caption": <short version of the carousel caption: hook line, 2-3 lines, "Full breakdown on our page 👆 Follow @ElevatexWealth", 5-8 hashtags incl. #Elevate #reels>, "share_to_feed": true}`.
+   - URL to try first: `https://cdn.jsdelivr.net/gh/bozunak/elevate-media@<commit sha>/reels/<file>.mp4` (serves video/mp4). If Instagram rejects it, retry once with `https://raw.githubusercontent.com/bozunak/elevate-media/main/reels/<file>.mp4`.
+   - If both fail, send Brian the MP4 and caption (SendUserFile + SendUserMessage) with the error.
+6. On success send Brian one short message: "Reel posted ✅ <hook>" with the media id.
