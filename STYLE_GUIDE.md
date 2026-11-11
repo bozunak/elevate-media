@@ -92,3 +92,16 @@ Rules for the growth review (Sundays only, at most one change per week):
 
 Change log:
 - 2026-11-11: start at 3 Reels/day (Brian approved scaling toward @wealth's volume, decided by data).
+
+## 11. Sound (Brian's vision: every Reel has iconic, nostalgic, motivating or warm music)
+@wealth's posts feel cinematic because of famous, emotional music. Elevate gets the same feeling with music it is allowed to publish: **timeless public-domain classics and properly licensed royalty-free tracks**. Never use copyrighted songs or film scores (e.g. pop hits, John Williams' Home Alone/Harry Potter scores, "It's the Most Wonderful Time of the Year"). Instagram detects them and mutes the Reel or cuts its reach, and the page has no license for them.
+- Library: `music/` in this repo. Each track has a line in `music/catalog.jsonl`: {file, title, composer, performer, mood, season, license, source_url}. Use only tracks whose license is public domain, CC0 or CC-BY (CC-BY: credit the performer in the caption, e.g. "Music: Clair de Lune — Debussy, perf. X (CC BY)").
+- Choose by mood, not randomly. Set `"music"` in the Reel spec:
+  - warm / family / gratitude / peace → Clair de Lune, Gymnopédie No. 1, Canon in D, Air on the G String, Ave Maria (Schubert)
+  - motivating / ambition / comeback → Ode to Joy, Ride of the Valkyries, Hall of the Mountain King, Bolero, William Tell Overture finale, Vivaldi "Summer"
+  - luxury / elegance / money → Blue Danube, Vivaldi "Spring", Brahms Hungarian Dance No. 5, Flight of the Bumblebee, Für Elise
+  - Christmas season (from Thanksgiving to New Year's Day) → The Nutcracker (Waltz of the Flowers, Dance of the Sugar Plum Fairy, Trepak), Carol of the Bells, O Holy Night, Jingle Bells, Hark the Herald, We Wish You a Merry Christmas
+- Start the music on a recognizable moment (the main theme), not the quiet intro; set `"music_start"` seconds if needed. No track twice in 3 days (check `posts/log.jsonl` field `music`).
+- Log `music` (catalog title) with each Reel in `posts/log.jsonl` so the growth review can compare which sounds win.
+- If `music/` has no suitable track, publish without music and say so in the run summary (never fall back to a copyrighted song).
+- Carousels: the Instagram API can't attach music to carousels. Sound applies to Reels.
