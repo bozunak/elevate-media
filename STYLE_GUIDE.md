@@ -47,13 +47,13 @@ The renderer is `elevate_render.py` in this repository; run it from the repo fol
 ## 7. What's working (auto-updated by the daily growth review — do not edit by hand)
 _Not enough data yet (fewer than 10 posts with 48+ hours of insights). Until then, rotate topics and cover styles evenly so the review can compare them._
 
-## 8. Daily Reel (used by the Reel run only)
-Reels are how the page reaches non-followers, so each day's Reel is its OWN idea made for video — not a slideshow of a carousel.
-1. Idea: pick a topic/hook from section 1's rotation (and section 7's learnings) that suits motion: a bold claim, a fast list, a "most people vs. the rich" contrast, a surprising number. Check `posts/log.jsonl` so it doesn't repeat a recent carousel or Reel hook. Verify every fact and number (web search, Python) exactly as for carousels.
+## 8. Reels (used by every Reel run; how many run per day is set in section 10)
+Reels are how the page reaches non-followers, so each Reel is its OWN idea made for video — not a slideshow of a carousel.
+1. Idea: pick a topic/hook from section 1's rotation (and section 7's learnings) that suits motion: a bold claim, a fast list, a "most people vs. the rich" contrast, a surprising number. Check `posts/log.jsonl` so it doesn't repeat a recent carousel or Reel hook — including Reels already posted earlier today (each same-day Reel must use a different topic category and different footage). Lean on section 9's emotional one-liner hooks (purpose, ambition, comebacks, family, peace) as well as money and luxury hooks. Verify every fact and number (web search, Python) exactly as for carousels.
 2. Script: 4–6 scenes, 1.8–3.5 s each, 10–15 s total. Scene 1 = the hook, on screen from frame one, ≤ 8 words. Middle scenes = 1 short line each (≤ 10 words) that builds tension or gives the steps. Last scene = the payoff + "Follow @ElevatexWealth", written so the loop back to the hook feels natural.
 3. Footage: real Pexels stock VIDEO that matches the photo rules in section 2 (young attractive adults 20s–30s, luxury, classy, no sinful-looking tattoos, nothing explicit, no visible brand logos as the subject): yachts, supercars, villas, infinity pools, rooftops, first class, sunrise workouts, city skylines at night. Find candidates with WebSearch restricted to pexels.com ("pexels video …"); the id is the number at the end of the pexels.com/video/... URL. Download with `python3 /home/claude/elevate-media/pexels_video.py ID clip.mp4 [--vertical]` (some newer ids aren't downloadable — just try others). Grab a frame from each clip with ffmpeg and look at it with the Read tool before using it. Prefer vertical (9:16) clips and clips with movement; use a different clip per scene where possible.
 4. Build: write a spec (see the header of `elevate_reel_v2.py`) and run `python3 /home/claude/elevate-media/elevate_reel_v2.py spec.json out.mp4`. Gold words go in [[double brackets]]. Then grab 3–4 frames with ffmpeg, combine them into one preview, and look at it with the Read tool: text readable, not covering faces, footage on-brand. Fix and re-render if needed. If footage can't be found at all, fall back to `elevate_reel.py` with the most recent carousel's slides.
-5. Save as `reels/<YYYY-MM-DD>-reel.mp4`, append a line to `posts/log.jsonl` ({date, slot:"reel", topic, hook, pexels_video_ids, reel_media_id}), commit and push (pull --rebase first).
+5. Save as `reels/<YYYY-MM-DD>-<slot>.mp4` (slot = r1…r5, given by the run), append a line to `posts/log.jsonl` ({date, slot:"<slot>", topic, hook, pexels_video_ids, reel_media_id}), commit and push (pull --rebase first).
 6. Publish with Windsor.ai `execute_action`: connector `instagram`, action `create_video_post`, account `17841433578299003`, params `{"video_url": URL, "caption": <hook line + 2–4 short lines with the specifics + "Follow @ElevatexWealth for more" + disclaimer line if money returns are shown + 5–8 hashtags incl. #Elevate #reels>, "share_to_feed": true}`.
    - URL to try first: `https://cdn.jsdelivr.net/gh/bozunak/elevate-media@<commit sha>/reels/<file>.mp4` (serves video/mp4). If Instagram rejects it, retry once with `https://raw.githubusercontent.com/bozunak/elevate-media/main/reels/<file>.mp4`.
    - If both fail, send Brian the MP4 and caption (SendUserFile + SendUserMessage) with the error.
@@ -72,3 +72,22 @@ _Last update 2026-11-11 — last 30 days, ~500 posts per page._
 - **Money posts that work** frame a concept as a life lesson: compound interest, costly vs expensive, multiple income streams, earning vs owning, generational wealth.
 - **@explaining's winners** are awe/nature/science moments and underdog stories (rejected 11 times → astronaut).
 - **Apply to Elevate:** lean the Reel hooks toward @wealth's emotional-truth one-liners (fits our faith-warm tone: purpose, family, perseverance, peace); keep luxury visuals. Carousels stay for money lessons and luxury listicles.
+
+
+## 10. Posting cadence (Brian lets the growth review tune this — only the growth review edits it)
+Brian wants @wealth-style volume, with Reels as the main engine, and has handed the decision on how many posts to run per day to the growth data. Each scheduled Reel run reads the line below and posts only if its slot is listed; otherwise it ends immediately and silently.
+
+ACTIVE_REEL_SLOTS: r2, r3, r4
+
+Slots (ET post time): r1 10:00 AM · r2 1:30 PM · r3 4:30 PM · r4 9:00 PM · r5 11:00 PM. Carousels stay at am 7:30 AM and pm 7:00 PM daily, plus mid 12:45 PM on weekends/holidays.
+
+Rules for the growth review (Sundays only, at most one change per week):
+- Start: 3 Reels/day (r2, r3, r4). Never fewer than 2, never more than 5.
+- Add one slot (in order r1, then r5) when, over the last 7 days, the median non-follower reach per Reel is no more than 20% below the week before AND followers grew. More volume only pays if each Reel still gets shown.
+- Remove the most recently added slot when the median reach per Reel fell more than 30% in the week after an increase, or the account lost followers.
+- If Reels keep beating carousels by 3x+ on follows or non-follower reach for 2 weeks, recommend (to Brian) swapping a carousel slot for a Reel; don't change the carousel schedule yourself.
+- If the data says more than 5 Reels a day would help, say so to Brian.
+- Log each change here as one line: date, old → new, the numbers behind it.
+
+Change log:
+- 2026-11-11: start at 3 Reels/day (Brian approved scaling toward @wealth's volume, decided by data).
