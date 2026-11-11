@@ -63,3 +63,12 @@ Reels are how the page reaches non-followers, so each day's Reel is its OWN idea
 Study these pages' patterns — topics, hook formulas, cover layouts, pacing — never copy their wording, images or graphics, and re-verify any fact they state.
 - @wealth — pop-culture + money curiosity hooks, celebrity/luxury news angles, yellow headline band, circle cut-ins with arrows, 3–5 paragraph factual captions.
 - @explaining — "Explaining everything": surprising facts about everyday things, white headline with lime key words, very short punchy covers.
+
+### Data notes (from Windsor instagram_public; refreshed weekly by the inspiration review)
+_Last update 2026-11-11 — last 30 days, ~500 posts per page._
+- **Reels dominate.** @wealth posts ~16/day, ~98% Reels; median Reel ≈ 363K likes vs ≈ 25K for carousels (about 14×). @explaining's carousels hold up better (median ≈ 18K vs ≈ 5K for Reels), but its biggest hits (500K–900K) are still Reels.
+- **@wealth's top hooks are one-sentence emotional truths, not money facts:** pressure/ambition ("Nobody feels pressure on the couch…"), comeback ("Your story isn't over just because one chapter went wrong"), "one decision" framing, family/parents ("One day you'd give anything to see your parents' name light up your phone"), and people/boundaries ("Some people will never water your life…"). These pull 4–6M likes.
+- **Caption formula (both pages):** bold one-line hook with two emojis → short 1–2 sentence paragraphs that widen the lesson → a closing "maxim" line → "Follow ➡️ … every time you open Instagram" → 3–5 hashtags. Often there's a balancing line ("not guaranteed", "doesn't mean…") that keeps it credible.
+- **Money posts that work** frame a concept as a life lesson: compound interest, costly vs expensive, multiple income streams, earning vs owning, generational wealth.
+- **@explaining's winners** are awe/nature/science moments and underdog stories (rejected 11 times → astronaut).
+- **Apply to Elevate:** lean the Reel hooks toward @wealth's emotional-truth one-liners (fits our faith-warm tone: purpose, family, perseverance, peace); keep luxury visuals. Carousels stay for money lessons and luxury listicles.
