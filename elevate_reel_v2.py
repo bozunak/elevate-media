@@ -10,7 +10,7 @@ spec.json:
      "text": "Rich people in their 20s [[never]] do this", "size": 104, "pos": "center"},
     ...
   ],
-  "music": "optional/path.mp3",     # else a random track from music/ in this repo, else silent
+  "music": "music/clair_de_lune.mp3", "music_start": 12.0,  # pick by mood (guide §11); else a random track from music/ in this repo, else silent
   "cover": {"scene": 2, "t": 1.0,  # which scene's footage + seconds into that scene (pick the most
             "text": "Nobody claps for your [[5 AM]] self"}   # luxurious, sharpest frame); text = cover hook
 }
@@ -161,7 +161,7 @@ def main():
     if not music:
         tracks = [p for e in ("mp3", "m4a") for p in glob.glob(str(pathlib.Path(__file__).parent / "music" / f"*.{e}"))]
         music = random.choice(tracks) if tracks else None
-    ain = ["-stream_loop", "-1", "-i", music] if music else ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+    ain = ["-stream_loop", "-1", "-ss", str(spec.get("music_start", 0)), "-i", music] if music else ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
     af = ["-af", f"afade=t=in:d=0.5,afade=t=out:st={total-1:.2f}:d=1"] if music else []
     tmp = out + ".tmp.mp4"
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", video, *ain, "-map", "0:v", "-map", "1:a",
